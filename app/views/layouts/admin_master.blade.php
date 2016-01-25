@@ -16,6 +16,7 @@
 
         <!-- BOOTSTRAP CSS -->
         {{HTML::style('dist/css/bootstrap.min.css')}}
+        {{HTML::style('dist/css/main.css')}}
 
         <!-- GOOGLE FONTS -->
         {{HTML::style('https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700')}}
@@ -32,12 +33,27 @@
 
         <div class="container">
             
-            <div class="col-md-3">
+            <h3>
+               LV-BLOG 
+                <!-- Single button -->
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        username <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </h3>
+            <div class="clearfix"></div>
+            
+            <hr>
+            
+            <div class="col-md-2">
                 
                 <div data-spy="affix" data-offset-top="0" data-offset-bottom="200">
                     
-                <h3>LV-BLOG</h3>
-                <hr>
+                    
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="">Dashboard</a></li>
                     
@@ -45,9 +61,9 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             User <span class="caret"></span>
                         </a>
-                        <ul class="">
+                        <ul class="dropdown-menu">
                             <li><a href="">Create User</a></li>
-                            <li><a href="">View User</a></li>
+                            <li><a href="">User List</a></li>
                         </ul>
                     </li>
                     
@@ -56,7 +72,7 @@
                 
             </div>
             
-            <div class="col-md-9">
+            <div class="col-md-10">
                 
                 @yield('content')
                 

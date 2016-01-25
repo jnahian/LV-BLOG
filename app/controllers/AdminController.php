@@ -9,7 +9,7 @@ class AdminController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('pages.admin');
+		return View::make('pages.dashboard');
 	}
 
 
