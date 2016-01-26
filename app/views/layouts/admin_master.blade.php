@@ -34,17 +34,19 @@
         <div class="container">
             
             <h3>
-               LV-BLOG 
+                LV-BLOG : @yield('title')
                 <!-- Single button -->
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        username <span class="caret"></span>
+                        username
+                        <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="{{route('admin.user.destroy')}}">Logout</a></li>
                     </ul>
                 </div>
             </h3>
+            
             <div class="clearfix"></div>
             
             <hr>
@@ -55,15 +57,15 @@
                     
                     
                 <ul class="nav nav-pills nav-stacked">
-                    <li><a href="">Dashboard</a></li>
+                    <li><a href="{{route('admin')}}">Dashboard</a></li>
                     
                     <li role="presentation" class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                             User <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Create User</a></li>
-                            <li><a href="">User List</a></li>
+                            <li><a href="{{route('admin.user.create')}}">Create User</a></li>
+                            <li><a href="{{route('admin.user.index')}}">User List</a></li>
                         </ul>
                     </li>
                     
@@ -73,7 +75,16 @@
             </div>
             
             <div class="col-md-10">
-                
+              
+                @if(Session::get('success'))
+                <div class="alert alert-success">
+                    {{Session::get('success')}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif() 
+               
                 @yield('content')
                 
             </div>

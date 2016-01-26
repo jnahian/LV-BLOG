@@ -15,3 +15,4 @@ Route::get('show', ['as' => 'show', 'uses' => 'HomeController@show']);
 |*/
 
 Route::get('admin', ['as' => 'admin', 'uses' => 'AdminController@index']);
+Route::resource('admin/user', 'UserController');
