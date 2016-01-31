@@ -36,11 +36,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
          *  @var string
          */
         public $rules = [
-            'first_name'    => 'required',
-            'last_name'     => 'required',
-            'username'      => 'required|alpha_dash|between:6,20|unique:users',
-            'email'         => 'required|email|unique:users',
-            'password'      => 'required|min:8',
+            'registration' => [
+                    'first_name'    => 'required',
+                    'last_name'     => 'required',
+                    'username'      => 'required|alpha_dash|between:6,20|unique:users',
+                    'email'         => 'required|email|unique:users',
+                    'password'      => 'required|min:8',
+                ],
+            'update_user' => [
+                    'first_name'    => 'required',
+                    'last_name'     => 'required',
+                ],
+            'login' => [
+                    'username'      => 'required|alpha_dash|between:6,20',
+                    'password'      => 'required|min:8',
+                ],
         ];
 
 
@@ -52,14 +62,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $hidden = array('password', 'remember_token');
         
         /**
-	 * The 
+	 * The validation of registering user
 	 *
 	 * @var function
 	 */
         
-        public function validate_registration()
+        public function validate_rules($rules)
         {
-            $validation = Validator::make($this->attributes, $this->rules);
+            $validation = Validator::make($this->attributes, $this->rules[$rules]);
             if($validation->passes())
             {
                 return TRUE;

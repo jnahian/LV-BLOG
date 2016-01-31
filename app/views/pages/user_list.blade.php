@@ -9,6 +9,7 @@
 
 @section('content')
 
+    
     <h4>Users List</h4>
     @if($users)
         <div class="table-responsive">
@@ -25,23 +26,26 @@
                 </thead>
                 <tbody>
                    @foreach($users as $i => $user)
+                    
                     <tr>
                         <td>{{$i+1}}</td>
                         <td>{{$user->first_name.' '.$user->last_name}}</td>
                         <td>{{$user->username}}</td>
                         <td>{{$user->email}}</td>
                         <td class="text-center">
-                            <label class="label label-success">Approved</label>
-                            <label class="label label-warning">Pending</label>
+                            @foreach ($user->roles as $role)
+                                <label class="label label-<?php if($role->name == 'Admin') echo 'success'; elseif($role->name == 'Author') echo 'warning'; ?>">{{$role->name}}</label>
+                            @endforeach
                         </td>
                         <td class="text-center">
                             <a href={{url("admin/user/{$user->username}/edit")}} class="text-info"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a href={{route('admin.user.destroy', ['username' => ''])}} class="text-danger"><i class="glyphicon glyphicon-trash"></i></a>
+                            <a href="{{route('user.delete', $user->id)}}" class="text-danger"><i class="glyphicon glyphicon-trash"></i></a>
                         </td>
                     </tr>
                     @endforeach()
                 </tbody>
             </table>
+            {{ $users->links() }}
         </div>
     @else()
         <div class="alert alert-info">

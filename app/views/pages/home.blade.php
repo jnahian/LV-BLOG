@@ -4,8 +4,6 @@
 
 @section('content') 
 
-    <h1 class="text-center">{{ link_to(route('home'), 'LV-BLOG') }}</h1>
-    
     <div>
         <h4><a href="{{route('show')}}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate nihil amet hic, reiciendis voluptatem assumenda!</a></h4>
         <p>

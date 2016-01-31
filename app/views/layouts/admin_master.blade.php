@@ -35,14 +35,15 @@
             
             <h3>
                 LV-BLOG : @yield('title')
-                <!-- Single button -->
+                <!-- User options -->
                 <div class="btn-group pull-right">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        username
+                        {{Auth::user()->first_name.' '.Auth::user()->last_name}}
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a href="{{route('admin.user.destroy')}}">Logout</a></li>
+                        <li><a href="{{route('admin')}}">Dashboard</a></li>
+                        <li><a href="{{route('logout')}}">Logout</a></li>
                     </ul>
                 </div>
             </h3>
@@ -69,6 +70,16 @@
                         </ul>
                     </li>
                     
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Post <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{route('post.create')}}">Create Post</a></li>
+                            <li><a href="{{route('post.index')}}">All Posts</a></li>
+                        </ul>
+                    </li>
+                    
                 </ul>
                 </div>
                 
@@ -76,13 +87,13 @@
             
             <div class="col-md-10">
               
-                @if(Session::get('success'))
-                <div class="alert alert-success">
-                    {{Session::get('success')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                @if(Session::get('message'))
+                    <div class="alert alert-{{Session::get('type')}}">
+                        {{Session::get('message')}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 @endif() 
                
                 @yield('content')
