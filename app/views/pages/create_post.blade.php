@@ -4,7 +4,7 @@
 
     Create Post
 
-@stop()
+@stop
 
 @section('content') 
    
